@@ -1,0 +1,33 @@
+@isTest
+
+public class Test_subClass {
+    
+    static testMethod void test_getSub(){   
+        Test.startTest();
+        SubClass subRecord = new SubClass();
+        List<Sub__c> mySub = subRecord.getSub();
+        System.assertEquals(1, mySub.size());
+        Test.stopTest();
+    }
+    
+    static testMethod void test_GetContact(){
+        Test.startTest();
+        SubClass myController2 = new SubClass();
+        List<Contact> myCont = myController2.getContact();
+        system.debug(myCont);
+        System.assertEquals(1, myCont.size());
+        Test.stopTest();
+    }
+    
+    @testSetup
+    
+    static void insertContact(){
+        
+        List<Contact> con = SubClass2.crearCon();
+        insert con;
+        
+        List<Sub__c> sub = SubClass2.crearSubs(con);
+        insert sub;
+        
+    }
+}

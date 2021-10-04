@@ -1,0 +1,24 @@
+@RestResource(urlMapping='/Subs/*')
+global with sharing class SubManager {
+    @HttpGet
+    global static Sub__c getSubById() {
+        RestRequest request = RestContext.request;
+        // grab the subId from the end of the URL
+        String subId = request.requestURI.substring(
+            request.requestURI.lastIndexOf('/')+1);
+        Sub__c result =  [SELECT Name, subscriberId__c, Status__c, subscriptionPackage__c, subscriptionDate__c, cancelationDate__c FROM Sub__c WHERE Id = :subId];
+        return result;
+    }
+    @HttpPost
+    global static ID createSub(String estatu, String subaidi, String subscriptionp, Date subscriptiond) {
+        Sub__c thisSub = new Sub__c(
+            
+            Status__c=estatu,
+            subscriberId__c=subaidi,
+            subscriptionPackage__c=subscriptionp,
+            subscriptionDate__c=subscriptiond);
+        
+        insert thisSub;
+        return thisSub.Id;
+    }   
+}

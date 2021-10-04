@@ -1,0 +1,20 @@
+@isTest
+
+public class SubClass2 {
+
+    public static List<Contact> crearCon(){
+    List<Contact> con = new List<Contact>();
+    Contact myCon = new Contact(FirstName = 'pruebatest', LastName = 'test', Email = 'julianmoralesvega@gmail.com');
+    con.add(myCon);
+    return con;
+    }
+    
+    public static List<Sub__c> crearSubs(List<Contact> con){
+        List<Sub__c> sub = new List<Sub__c>();
+        for(Integer i = 0; i<con.size(); i++){
+            
+            sub.add(new Sub__c(Status__c = 'active', subscriberId__c = con[i].Id, subscriptionDate__c = date.parse('23/09/2021'), subscriptionPackage__c = '1 Month')); 
+        }
+        return sub;
+    }
+}

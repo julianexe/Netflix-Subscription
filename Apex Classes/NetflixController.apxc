@@ -1,0 +1,19 @@
+public class NetflixController {
+    
+    @InvocableMethod
+    
+    public static void SendEmail() {
+        List<Contact> listsub=[Select id from Contact limit 2];
+        List<Id> listids= new List<Id>();
+        for(Contact c:listsub) {
+            listids.add(c.id);
+        }
+        EmailTemplate et=[Select id from EmailTemplate where name = 'subemail' limit 1];
+        
+        Messaging.MassEmailMessage mail = new Messaging.MassEmailMessage();
+        mail.setTargetObjectIds(listids);
+        mail.setSenderDisplayName('subs gratis de netflix');
+        mail.setTemplateId(et.id);
+        Messaging.sendEmail(new Messaging.MassEmailMessage[] { mail });
+    }
+}

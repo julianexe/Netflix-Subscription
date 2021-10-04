@@ -1,0 +1,27 @@
+public class SubClass {
+    
+  /*  public void createSub(String subaidi, String subscriptionp, Date subscriptiond){
+        
+        Sub__c subRecord = new Sub__c();
+        
+        subRecord.subscriberId__c = subaidi;
+        subRecord.subscriptionPackage__c = subscriptionp;
+        subRecord.subscriptionDate__c= subscriptiond;
+        
+        insert subRecord;       
+        
+    } */
+    
+    public List<Sub__c>getSub(){
+        
+        return[SELECT Name, subscriberId__c, Status__c, subscriptionPackage__c, subscriptionDate__c, cancelationDate__c FROM Sub__c];
+        
+    }
+    
+    public List<Contact>getContact(){
+        
+        return[SELECT FirstName, LastName, Email FROM Contact];
+        
+    }
+    
+}
